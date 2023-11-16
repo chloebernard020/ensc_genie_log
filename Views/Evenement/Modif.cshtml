@@ -1,0 +1,52 @@
+@model Evenement
+
+<h2>Modification de l'événement @Model.Nom</h2>
+<div class="mt-3">
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-success mb-5">Annuler la modification</a>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Modif">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" value="@Model.Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" value="@Model.Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" value="@Model.Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Lieu" class="control-label"></label>
+                <select asp-for="LieuId" value="@Model.LieuId" class="form-select"
+                    asp-items="ViewBag.ListeLieux "></select>
+                <span asp-validation-for="LieuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnimalId" class="control-label"></label>
+                <select asp-for="AnimalId" value="@Model.Animal" class="form-select"
+                    asp-items="ViewBag.ListeAnimaux"></select>
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonnelId" class="control-label"></label>
+                <select asp-for="PersonnelId" value="@Model.Personnel" class="form-select"
+                    asp-items="ViewBag.ListePersonnels"></select>
+                <span asp-validation-for="PersonnelId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Modifier l'événement" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

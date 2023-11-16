@@ -1,0 +1,105 @@
+@model IEnumerable<Animal>
+
+@{
+    ViewData["Title"] = "Animal";
+}
+
+<div class=" d-flex justify-content-between mt-5 mb-5">
+    <div>
+        <h2>Les animaux de la réserve</h2>
+    </div>
+
+    <div>
+        <a asp-action="Create" class="btn btn-success">Ajouter un animal</a>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-header">
+                    Filtrer les animaux en fonction de leur lieu de vie !
+                </div>
+                <div class="card-body">
+                    <form asp-action="FiltrerLieux" method="get">
+                        <select name="choix" id="choix">
+
+                            @foreach (var item in ViewBag.ListeLieux)
+                            {
+                                <option value="@item.Id">@item.Nom</option>
+                            }
+                        </select>
+                        <br />
+                        <input type="submit" value="Filtrer" class="btn btn-success mt-3" />
+                    </form>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3 d-flex">
+                <div class="card flex-fill" style="width: 18rem;">
+                    <div class="card-header text-center pt-3">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Nom)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Age : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Age) ans</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6 ">
+                                <p class="text-secondary mb-0">Espèce : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Espece)</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Type : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Type)</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Lieu : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Lieu.Nom)</p>
+                            </div>
+                            <div class="text-center d-grid gap-2 mb-4">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block  btn-success">+
+                                    d'informations
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>

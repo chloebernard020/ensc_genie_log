@@ -1,0 +1,73 @@
+@model Lieu
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="d-flex row justify-content-between mt-5 mb-5">
+    <div class="col-9">
+        <h2>@Html.DisplayFor(model => model.Nom)</h2>
+    </div>
+    <div class="col">
+
+        <a asp-action="ConfirmDeleteLieu" asp-route-id="@Model.Id" class="btn btn-danger">Supprimer</a>
+        <a asp-action="Modif" asp-route-id="@Model.Id" class="btn btn-success">Modifier</a>
+
+    </div>
+</div>
+
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-4">
+            @Html.DisplayNameFor(model => model.Type)
+        </div>
+        <div class="col">
+            @Html.DisplayFor(model => model.Type)
+        </div>
+
+
+    </div>
+
+
+    <hr />
+    <a asp-action="Index" class="btn btn-outline-success">Retourner à la liste des parcs</a>
+    <div>
+        @if (ViewBag.ListeAnimaux.Count > 0)
+        {
+            <h3 class="mt-5 mb-3"> Les animaux du parc </h3>
+
+            <div class="row">
+                @foreach (var animal in ViewBag.ListeAnimaux)
+                {
+                    <div class=" col-4 card ml-4 mb-5 " style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@animal.Nom</h5>
+                            <p class="card-text">@animal.Nom est un(e) @animal.Espece qui vit dans @Html.DisplayFor(model =>
+                        model.Nom)
+                            </p>
+                            <a class="btn btn-success" asp-controller="Animal" asp-action="Details"
+                        asp-route-id="@animal.Id">Plus
+                                de
+                                détails</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+        @if (ViewBag.ListeAnimaux.Count == 0)
+        {
+            <h4 class="mt-5 mb-3"> Aucun animal n'est assigné à ce parc </h4>
+            <p>Chaque animal est assigné à un parc lors de son ajout à la réserve. <br />Veuillez ajouter un nouvel animal
+                en lui assignant ce lieu si vous souhaiter peupler ce parc.</p>
+
+            <div>
+                <a asp-controller="Animal" asp-action="Create" class="btn btn-success">Ajouter un animal</a>
+            </div>
+        }
+
+
+
+
+    </div>

@@ -1,0 +1,65 @@
+@if (ViewBag.ListeAnimaux.Count == 0)
+{
+    <h2 class="mb-5 mt-5"> Aucun animal n'est associé au lieu : @ViewBag.Lieu.Nom</h2>
+    <div>
+    <a asp-controller="Animal" asp-action="Create" class="btn btn-success">Ajouter un animal</a>
+</div>
+}
+
+@if (ViewBag.ListeAnimaux.Count > 0)
+{
+    <h2 class="mb-3 mt-5">Les animaux vivant dans le lieu : @ViewBag.Lieu.Nom</h2>
+    <a asp-action="Index" class="btn btn-outline-success">Retourner à la liste des animaux</a>
+    <div class="row mt-5">
+    @foreach (var item in ViewBag.ListeAnimaux)
+        {
+
+            <div class="col-3 d-flex">
+                <div class="card flex-fill" style="width: 18rem;">
+                    <div class="card-header text-center pt-3">
+                        <h5 class="card-title"> @item.Nom</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Age : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@item.Age ans</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6 ">
+                                <p class="text-secondary mb-0">Espèce : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@item.Espece</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Type : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@item.Type</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6">
+                                <p class="text-secondary mb-0">Lieu : </p>
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@item.Lieu.Nom</p>
+                            </div>
+                            <div class="text-center d-grid gap-2 mb-4">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block  btn-success">+
+                                    d'informations
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+}

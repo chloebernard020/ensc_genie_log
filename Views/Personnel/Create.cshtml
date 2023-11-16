@@ -1,0 +1,50 @@
+@model Personnel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Ajout de personnel</h2>
+<hr />
+<div class="mt-4 mb-4">
+    <a asp-action="Index" class="btn btn-outline-success">Retourner à la liste du personnel</a>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Prenom" class="control-label"></label>
+                <input asp-for="Prenom" class="form-control" />
+                <span asp-validation-for="Prenom" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Metier" class="control-label"></label>
+                <select asp-for="Metier" class="form-select" asp-items="ViewBag.ListeMetiers"></select>
+                <span asp-validation-for="Metier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialisation" class="control-label"></label>
+                <select asp-for="Specialisation" class="form-select" asp-items="ViewBag.ListeTypes"></select>
+                <span asp-validation-for="Specialisation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Ajouter le personnel" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

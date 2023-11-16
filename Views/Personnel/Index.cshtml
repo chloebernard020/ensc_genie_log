@@ -1,0 +1,55 @@
+@model IEnumerable<Personnel>
+
+@{
+    ViewData["Title"] = "Personnel";
+}
+
+<div class="d-flex justify-content-between mt-5 mb-5">
+
+    <h2>Le personnel de la réserve</h2>
+
+    <div>
+        <a asp-action="Create" class="btn btn-success">Ajouter du personnel</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3 d-flex">
+                <div class="card flex-fill mb-5 " style="width: 18rem;">
+                    <div class="card-header text-center pt-3">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Nom) @Html.DisplayFor(modelItem =>
+                        item.Prenom)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="=col-6">
+                                <p class="fs-6 text-secondary">Métier : </p>
+
+                                <p class="fs-5 ">@Html.DisplayFor(modelItem => item.Metier)</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6 mt-2">
+                                <p class="fs-6 text-secondary">Spécialisation : </p>
+
+                                <p class="fs-5 ">@Html.DisplayFor(modelItem => item.Specialisation)</p>
+                            </div>
+                            <div class="text-center d-grid gap-2 mt-2 mb-4">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block btn-success">+
+                                    d'informations
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+</table>

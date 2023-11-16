@@ -1,0 +1,62 @@
+﻿@model Evenement
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenue à LA RESERVE</h1>
+    <img class="img-responsive"
+        src="https://img.freepik.com/vecteurs-libre/illustration-concept-zoo_114360-6577.jpg?w=2000" height=500
+        width=1000 />
+
+</div>
+
+<div class="mt-4">
+
+    @if (ViewBag.ListeEvenement != null)
+    {
+        <div class="mb-4">
+            <h2>Les différents évenements à venir</h2>
+        </div>
+    }
+
+
+
+
+
+
+    <div class="row">
+        @foreach (var item in ViewBag.ListeEvenement)
+        {
+            <div class=" col-4 mb-5 mr-3">
+                <div class="  card mb-3 ">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nom</h5>
+                        <p class="card-text">@item.Description)</p>
+                        <a class="btn btn-success" asp-controller="Evenement" asp-action="Details"
+                        asp-route-id="@item.Id">Plus
+                            de
+                            détails</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        }
+
+    </div>
+
+</div>
+
+<!--
+<script>
+    window.addEventListener('load', function () {
+        const select = document.getElementById('choix');
+        select.addEventListener('change', function () {
+            var valeur = select.options[select.selectedIndex].value;
+            valeur = parseInt(valeur);
+            return valeur
+        });
+</script>-->

@@ -1,0 +1,90 @@
+@model Animal
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="d-flex row justify-content-between mt-5 mb-5">
+    <div class="col-9">
+        <h2>@Html.DisplayFor(model => model.Nom)</h2>
+    </div>
+    <div class="col">
+
+        <a asp-action="ConfirmDeleteAnimal" asp-route-id="@Model.Id" class="btn btn-danger">Supprimer</a>
+        <a asp-action="Modif" asp-route-id="@Model.Id" class="btn btn-success">Modifier</a>
+
+    </div>
+</div>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Espece)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Espece)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Age) ans
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Lieu)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Lieu.Nom)
+        </dd>
+
+    </dl>
+
+    <div class="col">
+        <a asp-action="Index" class="btn btn-outline-success">Retourner à la liste des animaux</a>
+    </div>
+</div>
+<div>
+        @if (ViewBag.ListePersonnels.Count > 0)
+        {
+            <h3 class="mt-5 mb-3"> Le personnel pouvant s'occuper de @Model.Nom</h3>
+
+            <div class="row">
+                @foreach (var personnel in ViewBag.ListePersonnels)
+                {
+                    <div class=" col-4 card ml-4 mb-5 " style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@personnel.Nom @personnel.Prenom</h5>
+                            <p class="card-text">@personnel.Nom @personnel.Prenom est un(e) @personnel.Metier
+                            </p>
+                            <a class="btn btn-success" asp-controller="Personnel" asp-action="Details"
+                        asp-route-id="@personnel.Id">Plus
+                                de
+                                détails</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+        @if (ViewBag.ListePersonnels.Count == 0)
+        {
+            <h4 class="mt-5 mb-3"> Cet animal ne peut être pris en charge par aucun personnel</h4>
+            <p>Veuillez ajouter du personnel en lui assignant la spécialisation correspondant au type de @Model.Nom</p>
+
+            <div>
+                <a asp-controller="Personnel" asp-action="Create" class="btn btn-success">Ajouter un personnel</a>
+            </div>
+        }
+
+
+
+
+    </div>
+

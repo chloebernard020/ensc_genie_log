@@ -1,0 +1,55 @@
+@model Evenement
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="d-flex row justify-content-between mt-5 mb-5">
+    <div class="col-9">
+        <h2>@Html.DisplayFor(model => model.Nom)</h2>
+    </div>
+    <div class="col">
+
+        <a asp-action="ConfirmDeleteEvenement" asp-route-id="@Model.Id" class="btn btn-danger">Supprimer</a>
+        <a asp-action="Modif" asp-route-id="@Model.Id" class="btn btn-success">Modifier</a>
+
+    </div>
+</div>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description) :
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Date) :
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Lieu)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Lieu.Nom)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Animal)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Animal.Nom)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Personnel)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Personnel.Prenom) @Html.DisplayFor(model => model.Personnel.Nom)
+        </dd>
+
+    </dl>
+</div>
+<div class="col">
+    <a asp-action="Index" class="btn btn-outline-success">Retourner à la liste des événements</a>
+</div>

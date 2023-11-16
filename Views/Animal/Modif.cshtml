@@ -1,0 +1,44 @@
+@model Animal
+<h2>Modification de l'animal @Model.Nom</h2>
+<div class="mt-3">
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-success mb-5">Annuler la modification</a>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Modif">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" value="@Model.Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" value="@Model.Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Espece" class="control-label"></label>
+                <input asp-for="Espece" value="@Model.Espece" class="form-control" />
+                <span asp-validation-for="Espece" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" value="@Model.Type" class="form-select" asp-items="ViewBag.ListeTypes"></select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Lieu" class="control-label"></label>
+                <select asp-for="LieuId" value="@Model.LieuId" class="form-select"
+                    asp-items="ViewBag.ListeLieux "></select>
+                <span asp-validation-for="LieuId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Modifier l'animal" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

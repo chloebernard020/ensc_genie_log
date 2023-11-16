@@ -1,0 +1,65 @@
+@model IEnumerable<Evenement>
+
+@{
+    ViewData["Title"] = "Evenement";
+}
+
+<div class="d-flex justify-content-between mt-5 mb-5">
+
+    <h2>Les événements de la réserve</h2>
+
+    <div>
+        <a asp-action="Create" class="btn btn-success">Ajouter un évenement</a>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4 d-flex">
+                <div class="card flex-fill" style="width: 18rem;">
+                    <div class="card-header text-center pt-3">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Nom)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="=col-6 text-secondary">
+                                @Html.DisplayNameFor(modelItem => item.Description) :
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6 text-secondary">
+                                @Html.DisplayNameFor(modelItem => item.Date) :
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Date)</p>
+                            </div>
+                            <hr>
+                            <div class="=col-6 text-secondary">
+                                @Html.DisplayNameFor(modelItem => item.Animal)
+                            </div>
+                            <div class="=col-6 mb-3">
+                                <p>@Html.DisplayFor(modelItem => item.Lieu.Nom)</p>
+                            </div>
+
+
+                            <div class="text-center d-grid gap-2 mb-4">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-block btn-success">+
+                                    d'informations
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
